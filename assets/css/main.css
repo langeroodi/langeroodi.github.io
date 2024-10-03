@@ -212,6 +212,50 @@ html {
     }
 }
 
+/* For small screens: One column */
+@media screen and (max-width: 736px) {
+    #header {
+        display: flex !important; /* Ensure flex layout */
+        flex-direction: column !important; /* Stack items vertically */
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 1rem !important; /* Equal vertical space */
+        width: 100% !important; /* Full width for header */
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #header > * {
+        flex: 1 1 100% !important; /* Ensure full width */
+        margin: 0 !important; /* Remove any extra margins */
+        text-align: center !important; /* Center text */
+        max-width: 100% !important;
+        padding: 0 !important; /* Remove padding */
+    }
+
+    #header nav ul {
+        flex-direction: column !important; /* Stack nav items vertically */
+        width: 100% !important; /* Full width */
+        padding: 0 !important; /* Ensure no extra padding */
+        margin: 0 !important; /* Remove any margin */
+        gap: 1rem !important; /* Equal spacing between nav items */
+    }
+
+    #header nav ul li {
+        width: 100% !important; /* Full width for list items */
+        margin: 0 !important; /* Remove margin */
+        padding: 0 !important; /* Remove padding */
+    }
+
+    #header nav ul li a {
+        width: 100% !important; /* Ensure full width for links */
+        text-align: center !important; /* Center text */
+        display: block !important; /* Block level for full width */
+        padding: 1rem !important; /* Ensure consistent padding */
+        box-sizing: border-box !important; /* Ensure padding fits */
+    }
+}
+
 @media screen and (max-width: 736px) {
     html {
         font-size: 11pt;
@@ -1837,4 +1881,30 @@ body.is-article-visible #footer {
 
 body.is-preload #footer {
     opacity: 0;
+}
+
+#header nav ul.nav-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#header nav ul.nav-row li {
+    flex: 0 1 22%; /* Fixed width for each box */
+    margin: 0.5rem;
+    max-width: 22%; /* Ensure the width doesn't grow */
+}
+
+@media screen and (max-width: 980px) {
+    #header nav ul.nav-row li {
+        flex: 0 1 35%; /* Fixed size for two per line */
+        max-width: 35%;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    #header nav ul.nav-row li {
+        flex: 0 1 51%; /* Stack items vertically */
+        max-width: 22%;
+    }
 }
