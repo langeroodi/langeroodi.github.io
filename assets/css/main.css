@@ -167,9 +167,22 @@ textarea {
 }
 
 @media screen and (max-width: 480px) {
-    html,
-    body {
-        min-width: 320px;
+    #header nav ul.nav-row li a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 8rem; /* Adjust size to fit within small screen */
+        height: 2.5rem; /* Adjust height to ensure proper fit */
+        line-height: 2.5rem; /* Ensure vertical alignment */
+        padding: 0; /* Remove extra padding */
+        box-sizing: border-box;
+        overflow: hidden; /* Prevent text from overflowing out of the box */
+    }
+
+    #header nav ul.nav-row li {
+        flex: 0 1 100%; /* Full width for each box */
+        max-width: 100%; /* Ensure it fills the width */
+        margin: 0.5rem 0; /* Add some spacing between boxes */
     }
 }
 
