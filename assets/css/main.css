@@ -167,22 +167,9 @@ textarea {
 }
 
 @media screen and (max-width: 480px) {
-    #header nav ul.nav-row li a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 8rem; /* Adjust size to fit within small screen */
-        height: 2.5rem; /* Adjust height to ensure proper fit */
-        line-height: 2.5rem; /* Ensure vertical alignment */
-        padding: 0; /* Remove extra padding */
-        box-sizing: border-box;
-        overflow: hidden; /* Prevent text from overflowing out of the box */
-    }
-
-    #header nav ul.nav-row li {
-        flex: 0 1 100%; /* Full width for each box */
-        max-width: 100%; /* Ensure it fills the width */
-        margin: 0.5rem 0; /* Add some spacing between boxes */
+    html,
+    body {
+        min-width: 320px;
     }
 }
 
@@ -222,50 +209,6 @@ html {
 @media screen and (max-width: 1680px) {
     html {
         font-size: 12pt;
-    }
-}
-
-/* For small screens: One column */
-@media screen and (max-width: 736px) {
-    #header {
-        display: flex !important; /* Ensure flex layout */
-        flex-direction: column !important; /* Stack items vertically */
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 1rem !important; /* Equal vertical space */
-        width: 100% !important; /* Full width for header */
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    #header > * {
-        flex: 1 1 100% !important; /* Ensure full width */
-        margin: 0 !important; /* Remove any extra margins */
-        text-align: center !important; /* Center text */
-        max-width: 100% !important;
-        padding: 0 !important; /* Remove padding */
-    }
-
-    #header nav ul {
-        flex-direction: column !important; /* Stack nav items vertically */
-        width: 100% !important; /* Full width */
-        padding: 0 !important; /* Ensure no extra padding */
-        margin: 0 !important; /* Remove any margin */
-        gap: 1rem !important; /* Equal spacing between nav items */
-    }
-
-    #header nav ul li {
-        width: 100% !important; /* Full width for list items */
-        margin: 0 !important; /* Remove margin */
-        padding: 0 !important; /* Remove padding */
-    }
-
-    #header nav ul li a {
-        width: 100% !important; /* Ensure full width for links */
-        text-align: center !important; /* Center text */
-        display: block !important; /* Block level for full width */
-        padding: 1rem !important; /* Ensure consistent padding */
-        box-sizing: border-box !important; /* Ensure padding fits */
     }
 }
 
@@ -1896,28 +1839,92 @@ body.is-preload #footer {
     opacity: 0;
 }
 
+/* 1. Ensure Header Boxes Never Exceed Four Per Row */
 #header nav ul.nav-row {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping to multiple lines */
+    justify-content: center; /* Center items in each row */
+    gap: 1rem; /* Optional: Add space between boxes */
+    padding: 0;
+    margin: 0;
 }
 
 #header nav ul.nav-row li {
-    flex: 0 1 22%; /* Fixed width for each box */
-    margin: 0.5rem;
-    max-width: 22%; /* Ensure the width doesn't grow */
+    flex: 0 0 22%; /* Slightly less than 25% to account for gaps */
+    max-width: 22%;
+    box-sizing: border-box;
+    margin: 0; /* Remove existing margins to use gap instead */
 }
 
-@media screen and (max-width: 980px) {
+#header nav ul.nav-row li a {
+    width: 100%; /* Make the link fill the entire li */
+    height: 100%; /* Ensure full height */
+    padding: 0.5rem; /* Adjust padding as needed */
+    box-sizing: border-box;
+}
+
+/* Ensure a maximum of four boxes per row */
+@media screen and (min-width: 768px) {
     #header nav ul.nav-row li {
-        flex: 0 1 35%; /* Fixed size for two per line */
-        max-width: 35%;
+        flex: 0 0 22%; /* Adjust as needed */
+        max-width: 22%;
     }
 }
 
-@media screen and (max-width: 736px) {
+/* 2. Remove Extra Top Border on Small iPhone Screens */
+@media screen and (max-width: 480px) {
+    /* Assuming the extra border is on the li or a elements */
     #header nav ul.nav-row li {
-        flex: 0 1 51%; /* Stack items vertically */
-        max-width: 22%;
+        border-top: none; /* Remove top border */
+    }
+}
+
+/* 3. Ensure Consistent Sizing and Alignment */
+#header nav ul.nav-row li a {
+    display: flex; /* Use Flexbox for alignment */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    text-align: center; /* Ensure text is centered */
+    height: 100%; /* Make sure the link takes full height */
+    padding: 0.5rem; /* Adjust padding as needed */
+    box-sizing: border-box;
+}
+
+/* 4. Center Rows with Fewer Than Four Boxes */
+#header nav ul.nav-row {
+    justify-content: center; /* Center items in each row */
+}
+
+/* Optional: Adjust Box Dimensions for Consistency */
+#header nav ul.nav-row li a {
+    min-height: 3rem; /* Set a minimum height */
+    /* Alternatively, set fixed height if desired */
+}
+
+/* Optional: Responsive Adjustments for Smaller Screens */
+@media screen and (max-width: 768px) {
+    #header nav ul.nav-row li {
+        flex: 0 0 45%; /* Two per row on tablets */
+        max-width: 45%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #header nav ul.nav-row li {
+        flex: 0 0 100%; /* One per row on mobile */
+        max-width: 100%;
+    }
+}
+
+/* 5. Limit Header Box Width on Large Screens */
+@media screen and (min-width: 1200px) {
+    #header nav ul.nav-row {
+        max-width: 1000px; /* Optional: Limit the total width of the nav row */
+        margin: 0 auto; /* Center the nav row within its container */
+    }
+
+    #header nav ul.nav-row li {
+        flex: 0 0 22%; /* Maintain the flex basis */
+        max-width: 200px; /* Set a maximum width for each box */
     }
 }

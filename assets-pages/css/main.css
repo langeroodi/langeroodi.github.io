@@ -359,12 +359,6 @@ header > p {
     }
 }
 
-@media screen and (max-width: 360px) {
-    .container {
-        width: calc(100% - 30px);
-    }
-}
-
 /* Row */
 
 .row {
@@ -2678,8 +2672,11 @@ body {
 /* Main */
 
 #main {
-    border-bottom: none; /* Remove the bottom border */
-    padding: 6em 0 0 0; /* Adjust padding to remove the extra space */
+    border-top: solid 5px #d3d8d5;
+    border-bottom: solid 5px #d3d8d5;
+    border-top-width: 5px;
+    border-bottom-width: 0px;
+    padding: 6em 0 6em 0;
 }
 
 /* Sidebar + Content */
@@ -2852,43 +2849,19 @@ body {
         display: none;
     }
 
-    /* Banner */
-
-    #nav {
-        display: block;
-        background-color: rgba(255, 255, 255, 0.95);
-        height: auto;
-        padding: 0;
-    }
-
-    #nav ul {
-        display: flex;
-        justify-content: center; /* Center the items */
-        padding: 0;
-        margin: 0;
-    }
-
-    #nav li:first-child {
-        display: none; /* Remove the first item */
-    }
-
     #nav li {
-        display: inline-block;
-        width: auto;
-        text-align: center;
-        margin: 0 8px; /* Small margin between items */
+        margin: 0 0.25em; /* Reduce margins */
     }
 
     #nav li a {
-        font-size: 0.95em; /* Keep font size readable */
-        padding: 4px 0 0 0; /* Add a little top padding to lower the text */
-        line-height: 2.25; /* Keep line height minimal */
-        display: block;
+        font-size: 0.95em; /* Reduce font size */
+        padding: 4px 1em 0.25em 1em; /* Adjust padding to suit new font size */
     }
 
-    /* Extra adjustment to minimize the nav bar height */
-    #nav {
-        line-height: 1; /* Ensure nav itself doesn't add extra height */
+    /* Banner */
+
+    #banner {
+        padding: calc(14em + 44px) 0 14em 0;
     }
 
     /* Main */
@@ -3243,6 +3216,7 @@ body {
 
     #main {
         padding: 3em 0;
+        border-top-width: 2em;
     }
 
     /* Sidebar */
@@ -3271,14 +3245,14 @@ body {
 
 /* Small */
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 736px) {
     /* Basic */
 
     body,
     input,
     textarea,
     select {
-        font-size: 10pt;
+        font-size: 9pt;
     }
 }
 
@@ -3299,4 +3273,68 @@ body {
         100vh - 3.25em
     ); /* Adjusts for the height of the nav bar */
     padding: 0; /* Remove existing padding to avoid extra space */
+}
+
+/* Only show the first navigation item on screens smaller than 736px */
+@media screen and (max-width: 736px) {
+    #nav ul li:nth-child(n + 2) {
+        display: none;
+    }
+}
+
+/* Remove any potential border or background causing the white line */
+#footer,
+#main,
+.container,
+.row {
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+/* Make sure there's no padding/margin creating the line */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Ensure footer or any bottom content sticks cleanly */
+#page-wrapper {
+    min-height: 100vh;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* If a specific element needs adjustment */
+.any-element-causing-line {
+    border: none;
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 736px) {
+    .container {
+        width: calc(100% - 5px); /* Reduce the margin to make it smaller */
+    }
+}
+
+@media screen and (max-width: 360px) {
+    body {
+        padding-top: 0px; /* Adjust this value depending on the height of your navigation bar */
+    }
+
+    body,
+    input,
+    textarea,
+    select {
+        font-size: 8pt;
+    }
+
+    .container {
+        width: calc(100% - 5px); /* Keep the reduced margins */
+        margin-top: 50px; /* Add some margin to the top for additional spacing */
+    }
 }
