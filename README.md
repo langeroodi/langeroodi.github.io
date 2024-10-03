@@ -1,2 +1,2 @@
 # langeroodi.github.io
-Danial's website
+Danial Langeroodi's website
